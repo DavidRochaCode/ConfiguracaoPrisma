@@ -15,10 +15,20 @@ model User{
   name String
   email String
   password String
+  address Address?
 }
 
 model Book {
   id Int @id @default(autoincrement())
   title String
   description String
+}
+
+model Address{
+  //relation one-to-one
+  id Int @id @default(autoincrement())
+  country String
+  street String
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
 }
